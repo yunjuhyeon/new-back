@@ -24,7 +24,7 @@ public class ProfileController {
     @ResponseBody
     public ProfileDTO upload(@RequestParam("file") MultipartFile file,
                              @RequestParam("memberId") Long memberId) throws IOException {
-        String rootPath = "C:/upload/" + getPath();
+        String rootPath = "/home/ubuntu/upload" + getPath();
         UUID uuid = UUID.randomUUID();
 
         File directory = new File(rootPath);
@@ -70,12 +70,12 @@ public class ProfileController {
         ProfileDTO profileDTO = profileService.selectByMemberId(memberId);
         if (profileDTO == null) {
             // 기본 이미지 반환
-            String defaultImagePath = "C:/upload/default_profile.png";
+            String defaultImagePath = "/home/ubuntu/upload/default_profile.png";
             File defaultImageFile = new File(defaultImagePath);
             return FileCopyUtils.copyToByteArray(defaultImageFile);
         }
 
-        String displayPath = "C:/upload/" + profileDTO.getProfileFilePath() + "/" + profileDTO.getProfileFileName();
+        String displayPath = "/home/ubuntu/upload" + profileDTO.getProfileFilePath() + "/" + profileDTO.getProfileFileName();
         File file = new File(displayPath);
         return FileCopyUtils.copyToByteArray(file);
     }
