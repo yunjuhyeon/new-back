@@ -7,11 +7,11 @@
                 insert into tbl_member (
                 member_email, member_name, member_phone, member_password,
                 member_nickname, member_jung, member_point,
-                 created_date, updated_date
+                created_date, updated_date
                 ) values (
                 #{memberEmail}, #{memberName}, #{memberPhone}, #{memberPassword},
                 #{memberNickName}, #{memberJung}, #{memberPoint},
-                 CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+                CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
                 )
             </when>
             <otherwise>
@@ -138,14 +138,18 @@
             FROM tbl_member m
                      JOIN tbl_review r
                           ON m.member_nickname = r.vt_group_name
+
                               AND m.member_type = "ORGANIZATION"
+
             GROUP BY
                 m.id, m.member_nickname, m.member_star_rate,
                 m.member_introduction, m.created_date
         ) AS mr ON p.member_id = mr.id
             AND p.post_type = "VOLUNTEER"
+
                  LEFT JOIN tbl_profile tp
                            ON mr.id = tp.member_id
+
         GROUP BY
             mr.id, mr.member_nickname, mr.member_introduction,
             mr.member_star_rate, mr.created_date, mr.count_r_id,
@@ -153,12 +157,14 @@
             tp.profile_file_size, tp.profile_file_type
         ORDER BY
             CASE
+
                 WHEN #{pagination.order} = '별점순' THEN mr.member_star_rate
                 ELSE mr.count_r_id
                 END DESC,
             mr.created_date ASC
             LIMIT #{pagination.startRow}, #{pagination.rowCount};
     </select>
+
 
     <select id="selectTop5ByVt" resultType="memberDTO">
         SELECT
@@ -199,11 +205,11 @@
                  JOIN tbl_support_record s
                       ON m.id = s.member_id
                           AND MONTH(s.created_date) = #{month}
-            LEFT JOIN tbl_profile p
-        ON m.id = p.member_id
+                 LEFT JOIN tbl_profile p
+                           ON m.id = p.member_id
         GROUP BY m.id, m.member_nickname, m.created_date,
-            p.profile_file_name, p.profile_file_path,
-            p.profile_file_size, p.profile_file_type
+                 p.profile_file_name, p.profile_file_path,
+                 p.profile_file_size, p.profile_file_type
         ORDER BY sum_support_amount DESC, m.created_date ASC
             LIMIT 5;
     </select>
@@ -222,11 +228,11 @@
                  JOIN tbl_donation_record d
                       ON m.id = d.member_id
                           AND MONTH(d.created_date) = #{month}
-            LEFT JOIN tbl_profile p
-        ON m.id = p.member_id
+                 LEFT JOIN tbl_profile p
+                           ON m.id = p.member_id
         GROUP BY m.id, m.member_nickname, m.created_date,
-            p.profile_file_name, p.profile_file_path,
-            p.profile_file_size, p.profile_file_type
+                 p.profile_file_name, p.profile_file_path,
+                 p.profile_file_size, p.profile_file_type
         ORDER BY sum_donation_amount DESC, m.created_date ASC
             LIMIT 5;
     </select>
