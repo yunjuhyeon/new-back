@@ -144,8 +144,6 @@ public class DonationController {
         if (donationDTO.isPresent()) {
             model.addAttribute("donation", donationDTO.get());
             model.addAttribute("attachments", attachmentService.getList(postId));
-        } else {
-            return "redirect:/donation/donation-inquiry?postId=" + postId;
         }
         return "donation/donation-update";
     }

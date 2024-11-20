@@ -192,34 +192,6 @@ const showPaging = () => {
 showVolunteerPosts();
 showPaging();
 
-// 부모 컨테이너 가져오기
-const rightBarContainer = document.querySelector(".right-bar-container");
-
-// 9번 반복해서 right-bar-img-wrap 요소 생성
-for (let i = 0; i < 9; i++) {
-    const rightBarImgWrap = document.createElement("div");
-    rightBarImgWrap.classList.add("right-bar-img-wrap");
-    rightBarImgWrap.innerHTML = `
-        <a href="" class="right-bar">
-            <div class="right-bar-img-container cover">
-                <div class="card-image-default aspect-ratio-card-wrapper card-image">
-                    <div>
-                        <div class="observer"></div>
-                        <img
-                            src="https://cdn-dantats.stunning.kr/prod/portfolios/37db3714-d292-481e-a288-d29b7c2a6279/covers/eavxYqGTx3xsnczv.%EC%88%A8_1.%EC%84%AC%EB%84%A4%EC%9D%BC.jpg.small?s=1000x1000&amp;e=195x249&amp;t=crop&amp;q=100&amp;f=webp"
-                            alt="삼성숨정신건강의학과 의 삼성숨정신건강의학과의원  이미지"
-                        />
-                    </div>
-                </div>
-            </div>
-            <p class="card-img-in-right" title="삼성숨정신건강의학과의원 로고+간판 콘테스트">
-                삼성숨정신건강의학과의원 로고+간판 콘테스트
-            </p>
-        </a>
-    `;
-    rightBarContainer.appendChild(rightBarImgWrap);
-}
-
 document.addEventListener("DOMContentLoaded", function ()  {
     const reviewListContainer = document.querySelector(
         "div.review-card-divider.review-rectangle-card"
