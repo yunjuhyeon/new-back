@@ -81,7 +81,7 @@ const showVolunteerPosts = () => {
                         <div class="card-image-default card-image">
                             <div>
                                 <div class="observer"></div>
-                                <img src="https://cdn-dantats.stunning.kr/prod/portfolios/37db3714-d292-481e-a288-d29b7c2a6279/covers/eavxYqGTx3xsnczv.%EC%88%A8_1.%EC%84%AC%EB%84%A4%EC%9D%BC.jpg.small?s=1000x1000&amp;e=195x249&amp;t=crop&amp;q=100&amp;f=webp" alt="봉사활동 후기 이미지" />
+                                <img src="/attachment/display?attachmentFileName=${review.attachmentFilePath + "/t_" + review.attachmentFileName + review.attachmentFileRealName}" alt="봉사활동 후기 이미지" />
                             </div>
                         </div>
                     </div>

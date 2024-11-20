@@ -138,14 +138,18 @@
             FROM tbl_member m
                      JOIN tbl_review r
                           ON m.member_nickname = r.vt_group_name
-                              AND m.member_type = 'ORGANIZATION'
+
+                              AND m.member_type = "ORGANIZATION"
+
             GROUP BY
                 m.id, m.member_nickname, m.member_star_rate,
                 m.member_introduction, m.created_date
         ) AS mr ON p.member_id = mr.id
             AND p.post_type = "VOLUNTEER"
-            LEFT JOIN tbl_profile tp
-            ON mr.id = tp.member_id
+
+                 LEFT JOIN tbl_profile tp
+                           ON mr.id = tp.member_id
+
         GROUP BY
             mr.id, mr.member_nickname, mr.member_introduction,
             mr.member_star_rate, mr.created_date, mr.count_r_id,
@@ -153,15 +157,13 @@
             tp.profile_file_size, tp.profile_file_type
         ORDER BY
             CASE
-            WHEN #{pagination.order} = '별점순' THEN mr.member_star_rate
-            ELSE mr.count_r_id
-            END DESC,
+
+                WHEN #{pagination.order} = '별점순' THEN mr.member_star_rate
+                ELSE mr.count_r_id
+                END DESC,
             mr.created_date ASC
-        LIMIT #{pagination.startRow}, #{pagination.rowCount};
+            LIMIT #{pagination.startRow}, #{pagination.rowCount};
     </select>
-
-
-
 
 
     <select id="selectTop5ByVt" resultType="memberDTO">
@@ -189,7 +191,6 @@
             LIMIT 5;
     </select>
 
-
     <select id="selectTop5BySupport" resultType="memberDTO">
         SELECT
             m.id,
@@ -212,7 +213,6 @@
         ORDER BY sum_support_amount DESC, m.created_date ASC
             LIMIT 5;
     </select>
-
 
     <select id="selectTop5ByDonation" resultType="memberDTO">
         SELECT
