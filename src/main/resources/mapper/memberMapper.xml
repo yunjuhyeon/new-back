@@ -156,69 +156,76 @@
 
 
     <select id="selectTop5ByVt" resultType="memberDTO">
-        select
+        SELECT
             m.id,
             m.member_nickname,
             m.created_date,
             ar.sum_vt_time,
-            p.profile_file_name,
-            p.profile_file_path,
-            p.profile_file_size,
-            p.profile_file_type
-        from tbl_member m
-                 join (
-            select
+            COALESCE(p.profile_file_name, '') AS profile_file_name,
+            COALESCE(p.profile_file_path, '') AS profile_file_path,
+            COALESCE(p.profile_file_size, 0) AS profile_file_size,
+            COALESCE(p.profile_file_type, '') AS profile_file_type
+        FROM tbl_member m
+                 JOIN (
+            SELECT
                 a.member_id,
-                sum(r.vt_time) as sum_vt_time
-            from tbl_vt_application a
-                     join tbl_vt_record r on a.id = r.id
-                and month(r.vt_date) = #{month}
-            group by a.member_id
-        ) ar on m.id = ar.member_id
-                 left join tbl_profile p on m.id = p.member_id
-        group by m.id
-        order by ar.sum_vt_time desc, m.created_date asc
-            limit 5;
+                SUM(r.vt_time) AS sum_vt_time
+            FROM tbl_vt_application a
+                     JOIN tbl_vt_record r ON a.id = r.id
+            WHERE MONTH(r.vt_date) = #{month}
+            GROUP BY a.member_id
+        ) ar ON m.id = ar.member_id
+                 LEFT JOIN tbl_profile p ON m.id = p.member_id
+        ORDER BY ar.sum_vt_time DESC, m.created_date ASC
+            LIMIT 5;
     </select>
 
 
     <select id="selectTop5BySupport" resultType="memberDTO">
-        select
+        SELECT
             m.id,
             m.member_nickname,
             m.created_date,
-            sum(s.support_amount) as sum_support_amount,
-            p.profile_file_name,
-            p.profile_file_path,
-            p.profile_file_size,
-            p.profile_file_type
-        from tbl_member m
-                 join tbl_support_record s on m.id = s.member_id
-            and month(s.created_date) = #{month}
-                 left join tbl_profile p on m.id = p.member_id
-        group by m.id
-        order by sum(s.support_amount) desc, m.created_date asc
-            limit 5;
+            SUM(s.support_amount) AS sum_support_amount,
+            COALESCE(p.profile_file_name, '') AS profile_file_name,
+            COALESCE(p.profile_file_path, '') AS profile_file_path,
+            COALESCE(p.profile_file_size, 0) AS profile_file_size,
+            COALESCE(p.profile_file_type, '') AS profile_file_type
+        FROM tbl_member m
+                 JOIN tbl_support_record s
+                      ON m.id = s.member_id
+                          AND MONTH(s.created_date) = #{month}
+            LEFT JOIN tbl_profile p
+        ON m.id = p.member_id
+        GROUP BY m.id, m.member_nickname, m.created_date,
+            p.profile_file_name, p.profile_file_path,
+            p.profile_file_size, p.profile_file_type
+        ORDER BY sum_support_amount DESC, m.created_date ASC
+            LIMIT 5;
     </select>
 
 
     <select id="selectTop5ByDonation" resultType="memberDTO">
-        select
+        SELECT
             m.id,
             m.member_nickname,
             m.created_date,
-            sum(d.donation_amount) as sum_donation_amount,
-            p.profile_file_name,
-            p.profile_file_path,
-            p.profile_file_size,
-            p.profile_file_type
-        from tbl_member m
-                 join tbl_donation_record d on m.id = d.member_id
-            and month(d.created_date) = #{month}
-                 left join tbl_profile p on m.id = p.member_id
-        group by m.id
-        order by sum(donation_amount) desc, m.created_date asc
-            limit 5;
+            SUM(d.donation_amount) AS sum_donation_amount,
+            COALESCE(p.profile_file_name, '') AS profile_file_name,
+            COALESCE(p.profile_file_path, '') AS profile_file_path,
+            COALESCE(p.profile_file_size, 0) AS profile_file_size,
+            COALESCE(p.profile_file_type, '') AS profile_file_type
+        FROM tbl_member m
+                 JOIN tbl_donation_record d
+                      ON m.id = d.member_id
+                          AND MONTH(d.created_date) = #{month}
+            LEFT JOIN tbl_profile p
+        ON m.id = p.member_id
+        GROUP BY m.id, m.member_nickname, m.created_date,
+            p.profile_file_name, p.profile_file_path,
+            p.profile_file_size, p.profile_file_type
+        ORDER BY sum_donation_amount DESC, m.created_date ASC
+            LIMIT 5;
     </select>
 
 </mapper>

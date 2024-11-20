@@ -57,11 +57,6 @@ public class DonationController {
         donationDTO.setMemberId(loginMember.getId());
         donationDTO.setPostType("DONATION");
 
-        if (donationDTO.getPostTitle() == null || donationDTO.getPostContent() == null) {
-            log.error("필수 데이터가 없습니다.");
-            return new RedirectView("/donation/donation-write");
-        }
-
 //        데이터가 문제없으면 세션에 저장
 //        session.setAttribute("donation", donationDTO);
 

@@ -70,7 +70,7 @@ public class ProfileController {
         ProfileDTO profileDTO = profileService.selectByMemberId(memberId);
         if (profileDTO == null) {
             // 기본 이미지 반환
-            String defaultImagePath = "C:/upload/default_profile.jpg";
+            String defaultImagePath = "C:/upload/default_profile.png";
             File defaultImageFile = new File(defaultImagePath);
             return FileCopyUtils.copyToByteArray(defaultImageFile);
         }
