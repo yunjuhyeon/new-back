@@ -69,7 +69,7 @@ public class NoticeController {
         }
         inquiryDTO.setInquiryType(inquiryType.name());
 
-        String rootPath = "C:/upload" + getPath();
+        String rootPath = "/home/ubuntu/upload" + getPath();
         UUID uuid = UUID.randomUUID();
 
         File directory = new File(rootPath);
