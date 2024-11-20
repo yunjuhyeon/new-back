@@ -33,7 +33,7 @@ public class AttachmentController {
     @ResponseBody
     public AttachmentDTO upload(@RequestParam("file")List<MultipartFile> files) throws IOException {
 //        String rootPath = "D:/dev/OnjungSpring/back/src/main/resources/static/files" + getPath();
-        String rootPath = "C:/upload/" + getPath();
+        String rootPath = "/home/ubuntu/upload" + getPath();
         log.info("{}",files.size());
 
         AttachmentDTO attachmentDTO = new AttachmentDTO();
@@ -69,14 +69,14 @@ public class AttachmentController {
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String attachmentFileName) throws IOException{
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", attachmentFileName));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/upload", attachmentFileName));
     }
 
 //    다운로드
 //    REST방식이 아닌 ViewResolver 방식으로 사용해야 한다.
     @GetMapping("download")
     public ResponseEntity<Resource> download(String fileName) throws IOException {
-        Resource resource = new FileSystemResource("C:/upload/" + fileName);
+        Resource resource = new FileSystemResource("/home/ubuntu/upload" + fileName);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attchment; filename=" + new String(("한동석짱_" + fileName.substring(fileName.indexOf("_") + 1)).getBytes("UTF-8"), "ISO-8859-1"));
         return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);

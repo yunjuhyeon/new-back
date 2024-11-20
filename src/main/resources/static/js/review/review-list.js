@@ -89,7 +89,7 @@ const showVolunteerPosts = () => {
                 <div class="review-content">
                     <div class="avatar-container">
                         <a class="avatar-default avatar review-content-avatar" href="/m/jk8171822">
-                            <img src="https://cdn-dantats.stunning.kr/static/feature/profile/default-profile.png.small?q=80&amp;f=webp&amp;t=crop&amp;s=256x256" />
+                            <img src="/profile/display?memberId=${review.memberId}" />
                         </a>
                         <div class="review-user-info">
                             <div class="review-score">
