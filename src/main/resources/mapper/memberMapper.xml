@@ -116,44 +116,49 @@
 
     <select id="selectTop100VolunteerGroup" resultType="memberDTO">
         SELECT
-        mr.id,
-        mr.member_nickname,
-        mr.member_introduction,
-        mr.member_star_rate,
-        mr.created_date,
-        mr.count_r_id AS count_review,
-        tp.profile_file_name,
-        tp.profile_file_path,
-        tp.profile_file_size,
-        tp.profile_file_type
+            mr.id,
+            mr.member_nickname,
+            mr.member_introduction,
+            mr.member_star_rate,
+            mr.created_date,
+            mr.count_r_id AS count_review,
+            COALESCE(tp.profile_file_name, '') AS profile_file_name,
+            COALESCE(tp.profile_file_path, '') AS profile_file_path,
+            COALESCE(tp.profile_file_size, 0) AS profile_file_size,
+            COALESCE(tp.profile_file_type, '') AS profile_file_type
         FROM tbl_post p
-        JOIN (
-        SELECT
-        m.id,
-        m.member_nickname,
-        COUNT(r.id) AS count_r_id,
-        m.member_star_rate,
-        m.member_introduction,
-        m.created_date
-        FROM tbl_member m
-        JOIN tbl_review r ON m.member_nickname = r.vt_group_name
-        AND m.member_type = "ORGANIZATION"
-        GROUP BY m.id
+                 JOIN (
+            SELECT
+                m.id,
+                m.member_nickname,
+                COUNT(r.id) AS count_r_id,
+                m.member_star_rate,
+                m.member_introduction,
+                m.created_date
+            FROM tbl_member m
+                     JOIN tbl_review r
+                          ON m.member_nickname = r.vt_group_name
+                              AND m.member_type = "ORGANIZATION"
+            GROUP BY
+                m.id, m.member_nickname, m.member_star_rate,
+                m.member_introduction, m.created_date
         ) AS mr ON p.member_id = mr.id
-        AND p.post_type = "VOLUNTEER"
-        LEFT JOIN tbl_profile tp ON mr.id = tp.member_id
-        GROUP BY mr.id
+            AND p.post_type = "VOLUNTEER"
+                 LEFT JOIN tbl_profile tp
+                           ON mr.id = tp.member_id
+        GROUP BY
+            mr.id, mr.member_nickname, mr.member_introduction,
+            mr.member_star_rate, mr.created_date, mr.count_r_id,
+            tp.profile_file_name, tp.profile_file_path,
+            tp.profile_file_size, tp.profile_file_type
         ORDER BY
-        <choose>
-            <when test="pagination.order == '별점순'.toString()">mr.member_star_rate</when>
-            <otherwise>count_review</otherwise>
-        </choose> DESC,
-        mr.created_date ASC
-        LIMIT #{pagination.startRow}, #{pagination.rowCount};
+            CASE
+                WHEN #{pagination.order} = '별점순' THEN mr.member_star_rate
+                ELSE mr.count_r_id
+                END DESC,
+            mr.created_date ASC
+            LIMIT #{pagination.startRow}, #{pagination.rowCount};
     </select>
-
-
-
 
     <select id="selectTop5ByVt" resultType="memberDTO">
         SELECT
@@ -180,7 +185,6 @@
             LIMIT 5;
     </select>
 
-
     <select id="selectTop5BySupport" resultType="memberDTO">
         SELECT
             m.id,
@@ -203,7 +207,6 @@
         ORDER BY sum_support_amount DESC, m.created_date ASC
             LIMIT 5;
     </select>
-
 
     <select id="selectTop5ByDonation" resultType="memberDTO">
         SELECT
