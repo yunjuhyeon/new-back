@@ -26,11 +26,11 @@ create table tbl_member (
 select * from tbl_member;
 
 
-# UPDATE tbl_member
-# SET member_star_rate = 1.00
-# WHERE id = 6;
+UPDATE tbl_member
+SET member_name = '이지민'
+WHERE id = 26;
 insert into tbl_member(id, member_email, member_password, member_nickname,member_login_type)
-values(777, '윤주현@naver.com', '1234567', '관리자윤주현','ADMIN');
+values(26, 'ljm21000@naver.com', '123123', '지민짱','NORMAL');
 
 
 insert into tbl_member(id, member_email, member_password, member_nickname)
@@ -66,8 +66,8 @@ update tbl_member
 set member_name = '헌혈의 집(역삼)'
 where id = 22;
 
-insert into tbl_member (member_email,member_name, member_phone,member_password)
-values ('746aa1357@gmail.com','양승민','010-4452-9003', 1234567);
+insert into tbl_member (id,member_email,member_name,member_nickname, member_phone,member_password)
+values (777,'윤주현@naver.com','윤주현','관리자윤주현','010-5555-5555', 123123);
 
 
 
