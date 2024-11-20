@@ -20,7 +20,7 @@ values ();
 ALTER TABLE tbl_notice
     DROP FOREIGN KEY fk_notice_post;
 
-# 이거 해야 해 하면 지워
+
 ALTER TABLE tbl_notice
     ADD CONSTRAINT fk_notice_post FOREIGN KEY (id)
         REFERENCES tbl_post(id) ON DELETE CASCADE;
