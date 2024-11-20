@@ -66,6 +66,13 @@ public class ReviewController {
 
     @GetMapping("review-list")
     public String goToList(Pagination pagination, Model model, @RequestParam(required = false) String filterType) {
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+        boolean isLoggedIn = (loginMember != null);
+
+        model.addAttribute("isLogin", isLoggedIn);
+        if (isLoggedIn) {
+            model.addAttribute("member", loginMember);
+        }
         if (pagination.getOrder() == null) {
             pagination.setOrder("created_date desc, n.id desc"); // 기본 정렬 기준
         }
