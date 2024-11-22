@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 renderRankList(data.vtRankMembers, '.praise-rank-list');
                 renderRankList(data.supportRankMembers, '.contest-rank-list');
-                renderRankList(data.donationRankMembers, '.sales-rank-list');게
+                renderRankList(data.donationRankMembers, '.sales-rank-list');
             })
             .catch(error => console.error("Error loading rank data:", error));
     }

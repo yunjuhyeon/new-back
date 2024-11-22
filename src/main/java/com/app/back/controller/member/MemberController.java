@@ -181,7 +181,7 @@ public class MemberController {
             memberService.update(memberDTO.toVO());
 
             try {
-                String resetLink = "http://localhost:10000/member/password-reset?uuid=" + uuid;
+                String resetLink = "http://13.209.50.225:10000/member/password-reset?uuid=" + uuid;
                 emailUtil.sendHtmlEmail(email, resetLink);
                 response.put("success", true);
             } catch (MessagingException | UnsupportedEncodingException e) {

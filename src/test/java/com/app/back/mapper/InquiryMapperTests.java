@@ -22,9 +22,10 @@ public class InquiryMapperTests {
     public void testwrite() {
         InquiryDTO inquiryDTO = new InquiryDTO();
         inquiryDTO.setId(232L);
-        inquiryDTO.setPostStatus("");
+        inquiryDTO.setMemberId(26L);
+        inquiryDTO.setPostStatus("VISIBLE");
         inquiryDTO.setInquiryEmail("152@gmail.com");
-        inquiryDTO.setInquiryPhone("2222222222");
+        inquiryDTO.setInquiryPhone("01053929712");
         inquiryDTO.setInquiryType("VOLUNTEER");
         inquiryDTO.setPostTitle("152번제목");
         inquiryDTO.setPostContent("152번내용");

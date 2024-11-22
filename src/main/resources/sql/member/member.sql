@@ -115,3 +115,5 @@ values ('vd8e7d@naver.com','국제구호개발기구','010-1010-1010', 1234567, 
 
 delete from tbl_member
 where member_email = 'ljm21000@gmail.com';
+
+select * from tbl_member;
