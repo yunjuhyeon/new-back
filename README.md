@@ -150,7 +150,7 @@
 
 ❗문제 상황❗<br>
 <img src="/image/잘못된 코드.PNG">
-/admin/inquiry-page 요청에서 타임리프 템플릿을 렌더링하려 했으나, 타임리프 템플릿 경로가 잘못되었거나 템플릿 파일이 존재하지 않아 TemplateInputException 오류가 발생
+"/admin/inquiry-page" 경로로 요청했을 때 타임리프 템플릿을 렌더링하려 했으나, 타임리프 템플릿 경로가 잘못되었거나 템플릿 파일이 존재하지 않아 TemplateInputException 오류가 발생
 <br>
 <br>
 🚨문제 원인🚨<br>
