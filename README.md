@@ -15,7 +15,7 @@
 
  <h2>2. 기대효과</h2>
 
- ![image](https://github.com/user-attachments/assets/959d39c3-6b64-4908-94cd-b7e32d010ad7)
+<img src="/image/기대효과.png">
 
  전반적인 자원봉사 참여율 증가와 기부 문화 확산
 
@@ -40,7 +40,7 @@
 - Slack<br>
 
 <h2>4. ERD </h2>
-<img src="./images/test2.png">
+<img src="/image/erd.png">
 
 <h2>5. 담당업무 </h2>
 <h4>5-1 프론트엔드</h4>
