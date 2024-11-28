@@ -148,16 +148,16 @@
 
 ❗문제 상황❗<br>
 알람 기능을 구현하기 위해 인터셉터를 활용해 로그인한 사용자의 알람 데이터를 뷰에 전달하려 했으나 전달되지 않음
-<img src="/image/잘못된 코드.png">
+<img src="/image/잘못된 코드.PNG">
 
 <br>
 <br>
 🚨문제 원인🚨<br>
-<img src="/image/오류.png">
+<img src="/image/오류.PNG">
 <br>
 <br>
 🚀해결 방법🚀<br>
-<img src="/image/완성코드.png">
+<img src="/image/완성코드.PNG">
 로그인되지 않은 사용자 처리 로직 추가로 NullPointerException 문제 해결!
 <br><br>
 <h4>📌 타임리프 문법으로 해결한 헤더 프로필</h4>
