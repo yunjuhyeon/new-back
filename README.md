@@ -4,4 +4,4 @@
 <h4>1.서비스 제작 배경 및 필요성</h4>
 <HR>
 <strong>1-1서비스 제작 배경</strong>
-<img src="사진/graph.png">
+<img src="images/기획배경.png">
