@@ -4,3 +4,4 @@
 <h4>1.서비스 제작 배경 및 필요성</h4>
 <HR>
 <strong>1-1서비스 제작 배경</strong>
+<img src="photos/윤주현님.jpg">
