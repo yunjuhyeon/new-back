@@ -32,10 +32,6 @@
 - git, github<br>
 - JSON<br>
 - JDK 17.0.10<br>
-- Kakao DEVELOPER API<br>
-- Cool SMS API<br>
-- SMTP Gmail API<br>
-- kakao pay<br>
 - Slack<br>
 
 <h2>4. ERD </h2>
