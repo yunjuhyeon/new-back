@@ -72,15 +72,15 @@
 <h4>5-2 백엔드</h4>
 <img src="/image/back.png">
 
-▶로그인
+▶일반 사용자 고객센터 문의 작성
 <ul>
-<li>Kakao DEVELOPER API를 통한 카카오 간편 로그인 지원</li>
-<li>비밀번호 재설정 시 SMTP Gmail을 사용하여 재설정 링크 발송을 통한 비밀번호 재설정</li>
+<li>PostMapping을 통해 사용자 요청을 처리하여 문의 사항을 작성</li>
+<li></li>
 </ul>
-▶회원가입
+▶일반 사용자 공지사항
 <ul>
-<li>회원가입 시 Cool SMS API를 사용하여 휴대폰 번호 본인인증</li>
-<li>회원가입 시 SMTP Gmail을 사용하여 이메일 본인인증</li>
+<li>GetMapping을 활용하여 공지사항 목록과 세부 정보를 처리</li>
+<li></li>
 </ul>
 ▶마이페이지: 마이프로필/프로필 수정
 <ul>
